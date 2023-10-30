@@ -3,24 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class movjugador : MonoBehaviour
-
-    
-
 {
     public float moveSpeed = 5.0f; // Velocidad de movimiento del jugador.
     public Transform cameraTransform; // Referencia a la cámara.
-    Vector3 init_pos; // posición inicial cámara (en plano general)
-    Quaternion init_rot; // orientación inicial de cámara (en plano general)
-    bool cmr_status;
-
+    Vector3 initPos; // posición inicial cámara (en plano general)
+    bool cmrStatus;
+    float cameraTransitionSpeed = 5.0f; // Velocidad de transición de la cámara.
 
     void Start()
     {
-        
-        init_pos = GameObject.Find("camara_1").transform.position;
-        init_rot = GameObject.Find("camara_1").transform.rotation;
-        cmr_status = true;
-       
+        initPos = GameObject.Find("camara_1").transform.position;
+        cmrStatus = true;
     }
 
     void Update()
@@ -33,27 +26,22 @@ public class movjugador : MonoBehaviour
 
         transform.Translate(movement * moveSpeed * Time.deltaTime);
 
-       
-
-        if (Input.GetKeyDown(KeyCode.E)) cmr_status = !cmr_status;
-
-        if (cmr_status == false) 
+        if (Input.GetKeyDown(KeyCode.E))
         {
-           
-            GameObject.Find("camara_1").transform.position = gameObject.transform.position + new Vector3(0f, 0.4f, -1.2f);
-        
-        
+            cmrStatus = !cmrStatus;
         }
 
-        
+        if (cmrStatus == false)
+        {
+            // Transición suave de la cámara hacia la nueva posición.
+            Vector3 targetPosition = gameObject.transform.position + new Vector3(0f, 0.4f, -1.2f);
+            GameObject.Find("camara_1").transform.position = Vector3.MoveTowards(GameObject.Find("camara_1").transform.position, targetPosition, Time.deltaTime * cameraTransitionSpeed);
+        }
 
-        if (cmr_status == true) 
-            
-            {
-
-                GameObject.Find("camara_1").transform.position = init_pos;
-                GameObject.Find("camara_1").transform.rotation = init_rot;
-            }
-        
-    } // end of udpate()
+        if (cmrStatus == true)
+        {
+            // Transición suave de la cámara hacia la posición inicial.
+            GameObject.Find("camara_1").transform.position = Vector3.MoveTowards(GameObject.Find("camara_1").transform.position, initPos, Time.deltaTime * cameraTransitionSpeed);
+        }
+    }
 }
