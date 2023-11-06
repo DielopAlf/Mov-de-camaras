@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class panning : MonoBehaviour
+public class panningbrusco : MonoBehaviour
 {
     public Transform targetObject; // El objeto hacia el cual la cámara dirigirá su vista
     public float rotationSpeed = 2.0f;
@@ -18,8 +20,8 @@ public class panning : MonoBehaviour
             Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
 
             // Rota gradualmente hacia el objetivo
-          //  transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+              transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            
         }
     }
 }
