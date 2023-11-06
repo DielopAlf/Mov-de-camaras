@@ -57,6 +57,8 @@ public class camaracontrol : MonoBehaviour
                 float y = cmr.transform.position.y;
                 float z = cmr.transform.position.z;
 
+
+
                 cmr.transform.position = new Vector3(x, y, z + 17f * 0.25f * 2.0f * Time.deltaTime); // Cambia el signo + para alejar la cámara
             }
                                 }

@@ -25,6 +25,7 @@ public class movjugadordolly : MonoBehaviour
             f = f - 14f*Time.deltaTime;
             cmr.focalLength = f;
             float x = cmr.transform.position.x;
+
             float y = cmr.transform.position.y;
             float z = cmr.transform.position.z;
 
