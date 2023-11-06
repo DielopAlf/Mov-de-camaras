@@ -1085,13 +1085,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1056225224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b58a29227068c34b9e00b832e130796, type: 3}
+  m_Script: {fileID: 11500000, guid: c6dc2ff4d371d0d409a1d23146116ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 690921387}
-  cmr: {fileID: 1056225226}
-  zoomInDuration: -5
-  zoomOutDuration: 5
+  rotationSpeed: 2
+  moveSpeed: 2
+  dollySpeed: 2
+  panSpeed: 2
+  waitTime: 2
 --- !u!1 &1130498578
 GameObject:
   m_ObjectHideFlags: 0
