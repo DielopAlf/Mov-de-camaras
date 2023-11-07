@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.446577, g: 0.49641144, b: 0.5748163, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 126871141}
   - component: {fileID: 126871140}
   m_Layer: 0
-  m_Name: ff (3)
+  m_Name: pared_lateral_izquierda(verde)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 532225033}
   - component: {fileID: 532225032}
   m_Layer: 0
-  m_Name: ff (6)
+  m_Name: pared_trasera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 543928283}
   - component: {fileID: 543928282}
   m_Layer: 0
-  m_Name: ff (2)
+  m_Name: pared_lateral_derecha(verde)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 728088863}
   - component: {fileID: 728088862}
   m_Layer: 0
-  m_Name: ff (5)
+  m_Name: 'pared_frontal '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -766,13 +766,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 955373304}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: -34.83, y: 17.56, z: -20.58}
+  m_LocalRotation: {x: 0.42192084, y: -0.05203968, z: 0.024267098, w: 0.9048126}
+  m_LocalPosition: {x: 13.4, y: 17.56, z: 1.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: -6.583, z: 0}
 --- !u!1 &1028475445
 GameObject:
   m_ObjectHideFlags: 0
@@ -891,7 +891,7 @@ GameObject:
   - component: {fileID: 1040875375}
   - component: {fileID: 1040875374}
   m_Layer: 0
-  m_Name: ff (1)
+  m_Name: pared_lateral_derecha(roja)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1070,7 +1070,7 @@ Transform:
   m_GameObject: {fileID: 1056225224}
   serializedVersion: 2
   m_LocalRotation: {x: 0.41223672, y: -0, z: -0, w: 0.9110768}
-  m_LocalPosition: {x: 2.1, y: -0.36, z: -21.45}
+  m_LocalPosition: {x: 2.09, y: -0.36, z: -21.45}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1088,12 +1088,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6dc2ff4d371d0d409a1d23146116ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetObject: {fileID: 690921387}
-  rotationSpeed: 2
-  moveSpeed: 2
-  dollySpeed: 2
-  panSpeed: 2
-  waitTime: 2
 --- !u!1 &1130498578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,7 +1101,7 @@ GameObject:
   - component: {fileID: 1130498580}
   - component: {fileID: 1130498579}
   m_Layer: 0
-  m_Name: ff
+  m_Name: suelo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1212,7 +1206,7 @@ GameObject:
   - component: {fileID: 1187919147}
   - component: {fileID: 1187919146}
   m_Layer: 0
-  m_Name: ff (4)
+  m_Name: pared_lateral_izquierda(roja)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1831,7 +1825,7 @@ Transform:
   m_GameObject: {fileID: 2032335634}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.89, y: -4.8, z: -12.43}
+  m_LocalPosition: {x: 0.989, y: -4.8, z: -12.43}
   m_LocalScale: {x: 0.25042966, y: 0.25042966, z: 0.25042966}
   m_ConstrainProportionsScale: 0
   m_Children: []

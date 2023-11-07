@@ -4,145 +4,57 @@ using UnityEngine;
 
 public class camaracontrol : MonoBehaviour
 {
-    public Transform targetObject;
-    public float rotationSpeed = 2.0f;
-    public float moveSpeed = 2.0f;
-    public float dollySpeed = 2.0f;
-    public float panSpeed = 2.0f;
-    public float waitTime = 2.0f; // Tiempo de espera en segundos
 
-    private enum CinematicPhase
-    {
-        Travel,
-        LookForward, // Nueva fase para mirar hacia adelante antes de Dolly y Paneos
-        Dolly,
-        PanRight,
-        PanLeft,
-        Done
-    }
+    Vector3 initPos;
+    Vector3 targetPos;
 
-    private CinematicPhase cinematicPhase = CinematicPhase.Travel;
-    private Camera cmr;
-    private Vector3 initialPosition;
-    private float f;
-    private float timeElapsed = 0.0f;
-    private bool hasRotated = false;
+    bool travStatus;
+    bool panStatus;
+    bool dollyStatus;
+
+    Camera cmr;
+    float f;
 
     void Start()
     {
+
         cmr = gameObject.GetComponent<Camera>();
+
         cmr.usePhysicalProperties = true;
         f = cmr.focalLength;
-        initialPosition = gameObject.transform.position;
+
+
+        initPos = gameObject.transform.position;
+        targetPos = GameObject.Find("Cube").transform.position + new Vector3(0f, 0f, 0f);
+        travStatus = true;
+        panStatus = false;
+        dollyStatus = false;
+
     }
 
+
+    // Update is called once per frame
     void Update()
+
     {
-        timeElapsed += Time.deltaTime;
+        if (travStatus = true) transform.position = Vector3.MoveTowards(transform.position, targetPos, 2 * Time.deltaTime);
+        if (transform.position == targetPos) { travStatus = false; dollyStatus = true; }
 
-        switch (cinematicPhase)
+        if (dollyStatus == true)
         {
-            case CinematicPhase.Travel:
-                TravelToTarget();
-                break;
-
-            case CinematicPhase.LookForward:
-                LookForward();
-                break;
-
-            case CinematicPhase.Dolly:
-                DollyEffect();
-                break;
-
-            case CinematicPhase.PanRight:
-                PanRight();
-                break;
-
-            case CinematicPhase.PanLeft:
-                PanLeft();
-                break;
-
-            case CinematicPhase.Done:
-                // La cinemática ha terminado, realiza cualquier acción necesaria.
-                break;
-
-            default:
-                break;
-        }
-    }
-
-    void TravelToTarget()
-    {
-        Vector3 targetDirection = targetObject.position - transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-
-        if (Vector3.Distance(transform.position, targetObject.position) > 0.1f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetObject.position, moveSpeed * Time.deltaTime);
-        }
-        else if (timeElapsed >= waitTime)
-        {
-            timeElapsed = 0.0f;
-            cinematicPhase = CinematicPhase.LookForward;
-        }
-    }
-
-    void LookForward()
-    {
-        if (!hasRotated)
-        {
-            // Gira la cámara hacia arriba para mirar hacia adelante
-            transform.Rotate(Vector3.right, -rotationSpeed * Time.deltaTime);
-            if (Vector3.Angle(transform.forward, targetObject.position - transform.position) < 5)
+            if (f < 500) // Cambia el valor de 5 a un valor adecuado para tu escena
             {
-                hasRotated = true;
+                f = f + 14f * 2.0f * Time.deltaTime; // Cambia el signo + para alejar la cámara
+                cmr.focalLength = f;
+                float x = cmr.transform.position.x;
+                float y = cmr.transform.position.y;
+                float z = cmr.transform.position.z;
+
+
+
+                cmr.transform.position = new Vector3(x, y, z + 17f * 0.25f * 2.0f * Time.deltaTime); // Cambia el signo + para alejar la cámara
             }
         }
 
-        if (hasRotated && timeElapsed >= waitTime)
-        {
-            timeElapsed = 0.0f;
-            cinematicPhase = CinematicPhase.Dolly;
-        }
-    }
-
-    void DollyEffect()
-    {
-        if (f < 500)
-        {
-            f = f + 14f * dollySpeed * Time.deltaTime;
-            cmr.focalLength = f;
-
-            if (timeElapsed >= waitTime)
-            {
-                timeElapsed = 0.0f;
-                cinematicPhase = CinematicPhase.PanRight;
-            }
-        }
-    }
-
-    void PanRight()
-    {
-        Vector3 rightDirection = Quaternion.Euler(0, 90, 0) * (transform.forward); // Calcula la dirección hacia la derecha
-        transform.position += rightDirection * panSpeed * Time.deltaTime;
-
-        if (timeElapsed >= waitTime)
-        {
-            timeElapsed = 0.0f;
-            cinematicPhase = CinematicPhase.PanLeft;
-        }
-    }
-
-    void PanLeft()
-    {
-        Vector3 leftDirection = Quaternion.Euler(0, -90, 0) * (transform.forward); // Calcula la dirección hacia la izquierda
-        transform.position += leftDirection * panSpeed * Time.deltaTime;
-
-        if (timeElapsed >= waitTime)
-        {
-            timeElapsed = 0.0f;
-            cinematicPhase = CinematicPhase.Done;
-        }
-    }
+    } 
 }
