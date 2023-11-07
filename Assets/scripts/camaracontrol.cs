@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class camaracontrol : MonoBehaviour
 {
-
     Vector3 initPos;
     Vector3 targetPos;
 
@@ -14,15 +13,13 @@ public class camaracontrol : MonoBehaviour
 
     Camera cmr;
     float f;
+    float initialFocalLength = 50f; // Establece aquí el valor inicial de focalLength
 
     void Start()
     {
-
         cmr = gameObject.GetComponent<Camera>();
-
         cmr.usePhysicalProperties = true;
-        f = cmr.focalLength;
-
+        f = initialFocalLength; // Utiliza el valor inicial
 
         initPos = gameObject.transform.position;
         targetPos = GameObject.Find("Cube").transform.position + new Vector3(0f, 0f, 0f);
@@ -30,34 +27,73 @@ public class camaracontrol : MonoBehaviour
         panStatus = false;
         dollyStatus = false;
 
+        // Comienza la secuencia de acciones
+        StartCoroutine(PerformActions());
     }
 
-
-    // Update is called once per frame
-    void Update()
-
+    IEnumerator PerformActions()
     {
-        if (travStatus = true) transform.position = Vector3.MoveTowards(transform.position, targetPos, 2 * Time.deltaTime);
-        if (transform.position == targetPos) { travStatus = false; dollyStatus = false; }
-
-        if (dollyStatus == true)
+        // Realiza el "travelling"
+        while (travStatus)
         {
-            if (f < 500) // Cambia el valor de 5 a un valor adecuado para tu escena
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, 2 * Time.deltaTime);
+            if (transform.position == targetPos)
             {
-                f = f + 14f * 2.0f * Time.deltaTime; // Cambia el signo + para alejar la cámara
-                cmr.focalLength = f;
-                float x = cmr.transform.position.x;
-                float y = cmr.transform.position.y;
-                float z = cmr.transform.position.z;
-
-
-
-                cmr.transform.position = new Vector3(x, y, z + 17f * 0.25f * 2.0f * Time.deltaTime); // Cambia el signo + para alejar la cámara
+                travStatus = false;
+                panStatus = true;
             }
+            yield return null;
         }
 
-    } 
+        // Realiza el "panning" hasta Z -13
+        Vector3 panTarget = new Vector3(transform.position.x, transform.position.y, -13f);
+
+        while (panStatus && transform.position.z > panTarget.z)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, panTarget, 2 * Time.deltaTime);
+            yield return null;
+        }
+
+        // Realiza la rotación gradual
+        Quaternion startRotation = transform.rotation;
+        Quaternion targetRotation = Quaternion.Euler(0, 0, 0);
+        float rotationDuration = 2.0f; // Duración de la rotación en segundos
+        float rotationTimer = 0f;
+
+        while (rotationTimer < rotationDuration)
+        {
+            rotationTimer += Time.deltaTime;
+            float t = Mathf.SmoothStep(0, 1, rotationTimer / rotationDuration);
+            transform.rotation = Quaternion.Slerp(startRotation, targetRotation, t);
+            yield return null;
+        }
+
+        // Activa el "dolly inverso"
+        dollyStatus = true;
+        StartCoroutine(PerformDollyInverso());
+
+        // Implementa lógica adicional si es necesario después del dolly
+    }
+
+    IEnumerator PerformDollyInverso()
+    {
+        while (f > 200) // Cambiar el valor según tus necesidades
+        {
+            f = f - 14f * 2.0f * Time.deltaTime; // Disminuye la focalLength para alejar la cámara
+            cmr.focalLength = f;
+            yield return null;
+        }
+
+        // Finaliza el dolly inverso
+        dollyStatus = false;
+    }
+
+    void Update()
+    {
+        // Implementa lógica adicional si es necesario durante el dolly
+        if (dollyStatus)
+        {
+            // Agrega aquí tu lógica adicional durante el dolly
+        }
+    }
 }
-
-
-
