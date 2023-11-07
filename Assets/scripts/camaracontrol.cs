@@ -38,7 +38,7 @@ public class camaracontrol : MonoBehaviour
 
     {
         if (travStatus = true) transform.position = Vector3.MoveTowards(transform.position, targetPos, 2 * Time.deltaTime);
-        if (transform.position == targetPos) { travStatus = false; dollyStatus = true; }
+        if (transform.position == targetPos) { travStatus = false; dollyStatus = false; }
 
         if (dollyStatus == true)
         {
@@ -58,3 +58,6 @@ public class camaracontrol : MonoBehaviour
 
     } 
 }
+
+
+
