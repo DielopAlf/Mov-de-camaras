@@ -26,6 +26,9 @@ public class camaracontrol : MonoBehaviour
         travStatus = true;
         panStatus = false;
         dollyStatus = false;
+        
+        cmr.usePhysicalProperties = true;
+        cmr.focalLength = 50f;
 
         // Comienza la secuencia de acciones
         StartCoroutine(PerformActions());
@@ -59,6 +62,7 @@ public class camaracontrol : MonoBehaviour
         Quaternion targetRotation = Quaternion.Euler(0, 0, 0);
         float rotationDuration = 2.0f; // Duración de la rotación en segundos
         float rotationTimer = 0f;
+       
 
         while (rotationTimer < rotationDuration)
         {
@@ -73,27 +77,44 @@ public class camaracontrol : MonoBehaviour
         StartCoroutine(PerformDollyInverso());
 
         // Implementa lógica adicional si es necesario después del dolly
-    }
+    
+    
+    } //end of performActions
 
     IEnumerator PerformDollyInverso()
     {
-        while (f > 200) // Cambiar el valor según tus necesidades
+        // while (f > 200) // Cambiar el valor según tus necesidades
+
+       
+        while (f <= 200)
         {
-            f = f - 14f * 2.0f * Time.deltaTime; // Disminuye la focalLength para alejar la cámara
+            // f = f - 14f * 2.0f * Time.deltaTime; // Disminuye la focalLength para alejar la cámara
+            //  cmr.focalLength = f;
+            f = f + 60f * Time.deltaTime;
             cmr.focalLength = f;
+            print(cmr.focalLength);
+
             yield return null;
         }
 
         // Finaliza el dolly inverso
-        dollyStatus = false;
+       // dollyStatus = false;
     }
 
     void Update()
     {
+
+       /* print(dollyStatus);
+
         // Implementa lógica adicional si es necesario durante el dolly
         if (dollyStatus)
-        {
+        {   
+
+            f = f + 0.05f * Time.deltaTime;
+            cmr.focalLength = f;
+            print(cmr.focalLength); */
+
             // Agrega aquí tu lógica adicional durante el dolly
-        }
+       // }
     }
 }
