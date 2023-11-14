@@ -14,6 +14,8 @@ public class camaracontrol : MonoBehaviour
     float f;
     float initialFocalLength = 50f;
 
+    float t;
+
     void Start()
     {
         cmr = gameObject.GetComponent<Camera>();
@@ -30,7 +32,24 @@ public class camaracontrol : MonoBehaviour
         cmr.focalLength = 50f;
 
         StartCoroutine(PerformActions());
+
+        t = 0;
+    }  //end of Start()
+
+    void FixedUpdate()
+    {
+
+       
+        GameObject mama = GameObject.Find("ATTACK Prefab 3");
+        t += Time.fixedTime;
+        float x =1.75f + 0.8f * Mathf.Sin(0.5f*t);
+        float y = mama.transform.position.y;
+        float z = mama.transform.position.z;
+        if (t < 400)  mama.transform.position = new Vector3(x,y,z);
+
+
     }
+
 
     IEnumerator PerformActions()
     {
@@ -56,7 +75,7 @@ public class camaracontrol : MonoBehaviour
         Quaternion startRotation = transform.rotation;
         Quaternion targetRotation = Quaternion.Euler(0, 0, 0);
         float rotationDuration = 2.0f;
-        float rotationTimer = -0.4f;
+        float rotationTimer = 0f;
 
         while (rotationTimer < rotationDuration)
         {
@@ -72,7 +91,7 @@ public class camaracontrol : MonoBehaviour
         // Panning hacia el lado derecho lentamente
         Quaternion startRotationPanningRight = transform.rotation;
         Quaternion targetRotationPanningRight = Quaternion.Euler(0, 25, 0);
-        float rotationDurationPanningRight = 4.0f;
+        float rotationDurationPanningRight = 3.0f;
 
         float rotationTimerPanningRight = -0.8f;
         while (rotationTimerPanningRight < rotationDurationPanningRight)
@@ -86,7 +105,7 @@ public class camaracontrol : MonoBehaviour
         // Panning hacia el lado izquierdo lentamente
         Quaternion startRotationPanningLeft = transform.rotation;
         Quaternion targetRotationPanningLeft = Quaternion.Euler(0, -25, 0);
-        float rotationDurationPanningLeft = 2.0f;
+        float rotationDurationPanningLeft = 3.0f;
 
         float rotationTimerPanningLeft = -0.3f;
         while (rotationTimerPanningLeft < rotationDurationPanningLeft)
@@ -99,7 +118,7 @@ public class camaracontrol : MonoBehaviour
 
         // Vuelve a mirar al frente lentamente
         Quaternion finalRotation = Quaternion.Euler(0, 0, 0);
-        float finalRotationDuration = 10.0f; // Aumenta la duración para que sea más lento
+        float finalRotationDuration = 8.0f; // Aumenta la duración para que sea más lento
         float finalRotationTimer = 0.6f;
 
         while (finalRotationTimer < finalRotationDuration)
@@ -129,8 +148,5 @@ public class camaracontrol : MonoBehaviour
         dollyStatus = false;
     }
 
-    void Update()
-    {
-        // Puedes agregar lógica adicional durante el dolly si es necesario
-    }
+    
 }
