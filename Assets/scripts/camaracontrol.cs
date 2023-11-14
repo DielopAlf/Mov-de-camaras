@@ -56,7 +56,7 @@ public class camaracontrol : MonoBehaviour
         Quaternion startRotation = transform.rotation;
         Quaternion targetRotation = Quaternion.Euler(0, 0, 0);
         float rotationDuration = 2.0f;
-        float rotationTimer = 0f;
+        float rotationTimer = -0.4f;
 
         while (rotationTimer < rotationDuration)
         {
@@ -72,9 +72,9 @@ public class camaracontrol : MonoBehaviour
         // Panning hacia el lado derecho lentamente
         Quaternion startRotationPanningRight = transform.rotation;
         Quaternion targetRotationPanningRight = Quaternion.Euler(0, 25, 0);
-        float rotationDurationPanningRight = 2.0f;
+        float rotationDurationPanningRight = 4.0f;
 
-        float rotationTimerPanningRight = 0f;
+        float rotationTimerPanningRight = -0.8f;
         while (rotationTimerPanningRight < rotationDurationPanningRight)
         {
             rotationTimerPanningRight += Time.deltaTime;
@@ -88,7 +88,7 @@ public class camaracontrol : MonoBehaviour
         Quaternion targetRotationPanningLeft = Quaternion.Euler(0, -25, 0);
         float rotationDurationPanningLeft = 2.0f;
 
-        float rotationTimerPanningLeft = 0f;
+        float rotationTimerPanningLeft = -0.3f;
         while (rotationTimerPanningLeft < rotationDurationPanningLeft)
         {
             rotationTimerPanningLeft += Time.deltaTime;
@@ -99,8 +99,8 @@ public class camaracontrol : MonoBehaviour
 
         // Vuelve a mirar al frente lentamente
         Quaternion finalRotation = Quaternion.Euler(0, 0, 0);
-        float finalRotationDuration = 30.0f; // Aumenta la duración para que sea más lento
-        float finalRotationTimer = 0f;
+        float finalRotationDuration = 10.0f; // Aumenta la duración para que sea más lento
+        float finalRotationTimer = 0.6f;
 
         while (finalRotationTimer < finalRotationDuration)
         {
@@ -118,7 +118,7 @@ public class camaracontrol : MonoBehaviour
         // Ajusta el valor según sea necesario para permitir que la cámara se aleje más
         while (f <= 100)
         {
-            f = f + 60f * Time.deltaTime;
+            f = f + 40f * Time.deltaTime;
             cmr.focalLength = f;
             print(cmr.focalLength);
 
