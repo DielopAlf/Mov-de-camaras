@@ -34,7 +34,7 @@ public class camaracontrol : MonoBehaviour
         StartCoroutine(PerformActions());
 
         t = 0;
-    }  //end of Start()
+    }  
 
     void FixedUpdate()
     {
@@ -42,10 +42,12 @@ public class camaracontrol : MonoBehaviour
        
         GameObject mama = GameObject.Find("ATTACK Prefab 3");
         t += Time.fixedTime;
-        float x =1.75f + 0.8f * Mathf.Sin(0.5f*t);
+        float x =1.75f + 0.8f * Mathf.Sin(0.05f*t);
         float y = mama.transform.position.y;
         float z = mama.transform.position.z;
-        if (t < 400)  mama.transform.position = new Vector3(x,y,z);
+        if (t < 1200) { mama.transform.position = new Vector3(x, y, z); } else {          
+            mama.transform.position = new Vector3(2.037f, 0f, -7.5f);
+        }
 
 
     }
@@ -55,7 +57,7 @@ public class camaracontrol : MonoBehaviour
     {
         while (travStatus)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, 2 * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, 1f * Time.deltaTime);
             if (transform.position == targetPos)
             {
                 travStatus = false;
@@ -85,6 +87,7 @@ public class camaracontrol : MonoBehaviour
             yield return null;
         }
 
+        
         dollyStatus = true;
         yield return StartCoroutine(PerformDollyInverso());
 
