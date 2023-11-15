@@ -45,9 +45,9 @@ public class camaracontrol : MonoBehaviour
         float x =1.75f + 0.8f * Mathf.Sin(0.05f*t);
         float y = mama.transform.position.y;
         float z = mama.transform.position.z;
-        if (t < 1200) { mama.transform.position = new Vector3(x, y, z); } else {          
-            mama.transform.position = new Vector3(2.037f, 0f, -7.5f);
-        }
+        if (t < 1200) { mama.transform.position = new Vector3(x, y, z); } // else {          
+        //    mama.transform.position = new Vector3(2.037f, 0f, -7.5f);
+       // }
 
 
     }
@@ -124,6 +124,10 @@ public class camaracontrol : MonoBehaviour
         float finalRotationDuration = 8.0f; // Aumenta la duración para que sea más lento
         float finalRotationTimer = 0.6f;
 
+        GameObject mama = GameObject.Find("ATTACK Prefab 3");
+        mama.transform.position = new Vector3(2.037f, 0f, -7.5f);
+
+
         while (finalRotationTimer < finalRotationDuration)
         {
             finalRotationTimer += Time.deltaTime;
@@ -131,9 +135,9 @@ public class camaracontrol : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, finalRotation, tFinalRotation);
             yield return null;
         }
-
-        // Puedes agregar más acciones después del último ajuste de rotación
-    }
+         
+    // Puedes agregar más acciones después del último ajuste de rotación
+}
 
     IEnumerator PerformDollyInverso()
     {
