@@ -458,12 +458,20 @@ PrefabInstance:
       value: -139.4
       objectReference: {fileID: 0}
     - target: {fileID: 10817028, guid: 947e113398f058643a47464fff50cae1, type: 3}
+      propertyPath: m_Type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 10817028, guid: 947e113398f058643a47464fff50cae1, type: 3}
       propertyPath: m_Range
       value: 12.1
       objectReference: {fileID: 0}
     - target: {fileID: 10817028, guid: 947e113398f058643a47464fff50cae1, type: 3}
       propertyPath: m_Intensity
       value: 0.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 10817028, guid: 947e113398f058643a47464fff50cae1, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 10817028, guid: 947e113398f058643a47464fff50cae1, type: 3}
       propertyPath: m_Shadows.m_Type
@@ -4353,6 +4361,18 @@ PrefabInstance:
     - target: {fileID: 2978861661846278773, guid: 77ee1acb13270604cbd3bc032fc152be, type: 3}
       propertyPath: m_Name
       value: ATTACK Prefab 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093923530802178894, guid: 77ee1acb13270604cbd3bc032fc152be, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9218853
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093923530802178894, guid: 77ee1acb13270604cbd3bc032fc152be, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9218853
+      objectReference: {fileID: 0}
+    - target: {fileID: 7093923530802178894, guid: 77ee1acb13270604cbd3bc032fc152be, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.9218853
       objectReference: {fileID: 0}
     - target: {fileID: 7093923530802178894, guid: 77ee1acb13270604cbd3bc032fc152be, type: 3}
       propertyPath: m_LocalPosition.x

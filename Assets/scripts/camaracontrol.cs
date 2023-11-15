@@ -42,7 +42,7 @@ public class camaracontrol : MonoBehaviour
        
         GameObject mama = GameObject.Find("ATTACK Prefab 3");
         t += Time.fixedTime;
-        float x =1.75f + 0.8f * Mathf.Sin(0.05f*t);
+        float x =1.75f + 0.8f * Mathf.Sin(0.09f*t);
         float y = mama.transform.position.y;
         float z = mama.transform.position.z;
         if (t < 1200) { mama.transform.position = new Vector3(x, y, z); } // else {          
@@ -121,13 +121,13 @@ public class camaracontrol : MonoBehaviour
 
         // Vuelve a mirar al frente lentamente
         Quaternion finalRotation = Quaternion.Euler(0, 0, 0);
-        float finalRotationDuration = 8.0f; // Aumenta la duración para que sea más lento
+        float finalRotationDuration = 6.0f; // Aumenta la duración para que sea más lento
         float finalRotationTimer = 0.6f;
 
         GameObject mama = GameObject.Find("ATTACK Prefab 3");
-        mama.transform.position = new Vector3(2.037f, 0f, -7.5f);
-
-
+        mama.transform.position = new Vector3(2f, 0f, -12.244f);
+        
+               
         while (finalRotationTimer < finalRotationDuration)
         {
             finalRotationTimer += Time.deltaTime;
