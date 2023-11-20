@@ -121,7 +121,7 @@ public class camaracontrol : MonoBehaviour
 
         // Vuelve a mirar al frente lentamente
         Quaternion finalRotation = Quaternion.Euler(0, 0, 0);
-        float finalRotationDuration = 6.0f; // Aumenta la duración para que sea más lento
+        float finalRotationDuration = 4.0f; // Aumenta la duración para que sea más lento
         float finalRotationTimer = 0.6f;
 
         GameObject mama = GameObject.Find("ATTACK Prefab 3");
